@@ -1,0 +1,105 @@
+<svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" font-family="'Space Grotesk', sans-serif">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#1a2740"/>
+      <stop offset="100%" stop-color="#0a1120"/>
+    </radialGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4f8cff"/>
+      <stop offset="100%" stop-color="#22d3a6"/>
+    </linearGradient>
+    <filter id="soft"><feGaussianBlur stdDeviation="0.6"/></filter>
+  </defs>
+
+  <rect width="600" height="600" fill="url(#glow)"/>
+
+  <!-- blueprint grid -->
+  <g stroke="#1c2c48" stroke-width="1">
+    <g>
+      <line x1="0" y1="60" x2="600" y2="60"/><line x1="0" y1="120" x2="600" y2="120"/>
+      <line x1="0" y1="180" x2="600" y2="180"/><line x1="0" y1="240" x2="600" y2="240"/>
+      <line x1="0" y1="300" x2="600" y2="300"/><line x1="0" y1="360" x2="600" y2="360"/>
+      <line x1="0" y1="420" x2="600" y2="420"/><line x1="0" y1="480" x2="600" y2="480"/><line x1="0" y1="540" x2="600" y2="540"/>
+      <line x1="60" y1="0" x2="60" y2="600"/><line x1="120" y1="0" x2="120" y2="600"/>
+      <line x1="180" y1="0" x2="180" y2="600"/><line x1="240" y1="0" x2="240" y2="600"/>
+      <line x1="300" y1="0" x2="300" y2="600"/><line x1="360" y1="0" x2="360" y2="600"/>
+      <line x1="420" y1="0" x2="420" y2="600"/><line x1="480" y1="0" x2="480" y2="600"/><line x1="540" y1="0" x2="540" y2="600"/>
+    </g>
+  </g>
+
+  <!-- concentric tolerance rings -->
+  <g fill="none" stroke-dasharray="4 6" opacity="0.5">
+    <circle cx="300" cy="300" r="210" stroke="#2f4a78"/>
+    <circle cx="300" cy="300" r="210" stroke="#2f4a78"/>
+    <circle cx="300" cy="300" r="170" stroke="#33507f"/>
+    <circle cx="300" cy="300" r="130" stroke="#38578b"/>
+  </g>
+
+  <!-- rotating outer gear -->
+  <g transform="translate(300,300)">
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="40s" repeatCount="indefinite"/>
+      <g fill="none" stroke="url(#accent)" stroke-width="2.5" opacity="0.85">
+        <circle r="150"/>
+        <!-- gear teeth -->
+        <g stroke="#4f8cff" stroke-width="6">
+          <line x1="0" y1="-150" x2="0" y2="-168"/>
+          <line x1="106" y1="-106" x2="119" y2="-119"/>
+          <line x1="150" y1="0" x2="168" y2="0"/>
+          <line x1="106" y1="106" x2="119" y2="119"/>
+          <line x1="0" y1="150" x2="0" y2="168"/>
+          <line x1="-106" y1="106" x2="-119" y2="119"/>
+          <line x1="-150" y1="0" x2="-168" y2="0"/>
+          <line x1="-106" y1="-106" x2="-119" y2="-119"/>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- counter-rotating inner gear -->
+  <g transform="translate(300,300)">
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="360" to="0" dur="26s" repeatCount="indefinite"/>
+      <circle r="92" fill="none" stroke="#22d3a6" stroke-width="2" opacity="0.8"/>
+      <g stroke="#22d3a6" stroke-width="5">
+        <line x1="0" y1="-92" x2="0" y2="-106"/>
+        <line x1="65" y1="-65" x2="75" y2="-75"/>
+        <line x1="92" y1="0" x2="106" y2="0"/>
+        <line x1="65" y1="65" x2="75" y2="75"/>
+        <line x1="0" y1="92" x2="0" y2="106"/>
+        <line x1="-65" y1="65" x2="-75" y2="75"/>
+        <line x1="-92" y1="0" x2="-106" y2="0"/>
+        <line x1="-65" y1="-65" x2="-75" y2="-75"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- linkage overlay (static, precise) -->
+  <g stroke-linecap="round">
+    <line x1="200" y1="410" x2="330" y2="250" stroke="#4f8cff" stroke-width="7"/>
+    <line x1="330" y1="250" x2="410" y2="300" stroke="#e05a5a" stroke-width="7"/>
+    <line x1="410" y1="300" x2="360" y2="200" stroke="#4f8cff" stroke-width="7"/>
+    <g fill="#0a1120" stroke="#cbd5e1" stroke-width="2.5">
+      <circle cx="200" cy="410" r="7"/><circle cx="330" cy="250" r="7"/>
+      <circle cx="410" cy="300" r="7"/><circle cx="360" cy="200" r="7"/>
+    </g>
+  </g>
+
+  <!-- dimension callout -->
+  <g stroke="#22d3a6" stroke-width="1.4" fill="#22d3a6" font-size="13">
+    <line x1="120" y1="470" x2="120" y2="500"/>
+    <line x1="300" y1="470" x2="300" y2="500"/>
+    <line x1="120" y1="490" x2="300" y2="490"/>
+    <polygon points="120,490 128,486 128,494"/>
+    <polygon points="300,490 292,486 292,494"/>
+    <text x="196" y="484" text-anchor="middle" fill="#7fe9cf">&#216; 0.9 &#8594; 3.3</text>
+  </g>
+
+  <!-- pulsing precision point -->
+  <circle cx="300" cy="300" r="6" fill="#22d3a6">
+    <animate attributeName="r" values="5;9;5" dur="2.6s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="1;0.4;1" dur="2.6s" repeatCount="indefinite"/>
+  </circle>
+
+  <text x="300" y="560" text-anchor="middle" fill="#3f5b86" font-size="12" letter-spacing="3">PRECISION &#183; TOLERANCE &#183; MOTION</text>
+</svg>
