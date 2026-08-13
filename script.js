@@ -46,25 +46,41 @@ const barObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.3 });
 skillCards.forEach((c) => barObs.observe(c));
 
-// Count-up for metrics
+// Count-up for metrics.
+// The real values live in the HTML (both data-target and the visible text) so
+// search engines, link-preview bots, and no-JS visitors always see the true
+// numbers. JS only adds the count-up animation on top.
 const nums = document.querySelectorAll(".metric-num");
-const animate = (el) => {
-  const target = parseFloat(el.dataset.target);
-  const suffix = el.dataset.suffix || "";
-  const start = performance.now(), dur = 1400;
-  const step = (now) => {
-    const p = Math.min((now - start) / dur, 1);
-    const eased = 1 - Math.pow(1 - p, 3);
-    el.textContent = Math.round(eased * target) + suffix;
-    if (p < 1) requestAnimationFrame(step); else el.textContent = target + suffix;
-  };
-  requestAnimationFrame(step);
-};
-const numObs = new IntersectionObserver((entries) => {
-  entries.forEach((e) => { if (e.isIntersecting) { animate(e.target); numObs.unobserve(e.target); } });
-}, { threshold: 0.5 });
-nums.forEach((n) => numObs.observe(n));
+const finalText = (el) => el.dataset.target + (el.dataset.suffix || "");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+if ("IntersectionObserver" in window && !reduceMotion) {
+  const animate = (el) => {
+    const target = parseFloat(el.dataset.target);
+    const suffix = el.dataset.suffix || "";
+    const start = performance.now(), dur = 1400;
+    const step = (now) => {
+      const p = Math.min((now - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(eased * target) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = finalText(el);
+    };
+    requestAnimationFrame(step);
+  };
+ const numObs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { animate(e.target); numObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.35 });
+  nums.forEach((n) => {
+    n.textContent = "0" + (n.dataset.suffix || ""); // start state for the count-up
+    numObs.observe(n);                              // fires immediately if already in view
+  });
+} else {
+  // No IntersectionObserver, or user prefers reduced motion: show real numbers, no animation.
+  nums.forEach((n) => { n.textContent = finalText(n); });
+}
 // Typing effect on the headline
 (function(){
   const el = document.getElementById("typed");
