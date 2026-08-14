@@ -51,18 +51,19 @@ skillCards.forEach((c) => barObs.observe(c));
 // search engines, link-preview bots, and no-JS visitors always see the true
 // numbers. JS only adds the count-up animation on top.
 const nums = document.querySelectorAll(".metric-num");
-const finalText = (el) => el.dataset.target + (el.dataset.suffix || "");
+const finalText = (el) =>  (el.dataset.prefix || "") + el.dataset.target + (el.dataset.suffix || "");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 if ("IntersectionObserver" in window && !reduceMotion) {
   const animate = (el) => {
     const target = parseFloat(el.dataset.target);
     const suffix = el.dataset.suffix || "";
+    const prefix = el.dataset.prefix || "";
     const start = performance.now(), dur = 1400;
     const step = (now) => {
       const p = Math.min((now - start) / dur, 1);
       const eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(eased * target) + suffix;
+      el.textContent = prefix + Math.round(eased * target) + suffix;
       if (p < 1) requestAnimationFrame(step);
       else el.textContent = finalText(el);
     };
