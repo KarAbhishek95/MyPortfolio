@@ -731,6 +731,41 @@ body::after{
 .skill-card strong{display:block;color:var(--accent);font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;margin-top:6px}
 .skill-card>span{color:var(--dim);font-size:.84rem}
 
+/* ---------- Technical Expertise Alignment ---------- */
+
+#expertise .cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+
+#expertise .skill-card {
+  min-width: 0;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* Keep descriptions from creating uneven bars */
+#expertise .skill-card > p {
+  line-height: 1.6;
+}
+
+/* Position specialization footers at card bottom */
+#expertise .skill-card > strong {
+  margin-top: auto;
+  padding-top: 14px;
+}
+
+#expertise .skill-card > span {
+  display: block;
+  margin-top: 5px;
+  line-height: 1.5;
+}
+
+
 /* ---------- Projects ---------- */
 .project-card{margin-bottom:26px;padding:44px;border:1px solid var(--border);border-radius:var(--radius);
   background:linear-gradient(180deg,var(--surface),var(--bg-2));box-shadow:var(--shadow)}
@@ -884,6 +919,9 @@ footer{padding:34px 0;border-top:1px solid var(--border);background:var(--dark)}
   .project-head {
     flex-direction: column;
     gap: 14px
+  }
+   #expertise .cards-grid {
+    grid-template-columns: 1fr;
   }
 }
 @media (max-width:560px) {
