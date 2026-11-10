@@ -50,7 +50,9 @@ skillCards.forEach((c) => barObs.observe(c));
 // The real values live in the HTML (both data-target and the visible text) so
 // search engines, link-preview bots, and no-JS visitors always see the true
 // numbers. JS only adds the count-up animation on top.
-const nums = document.querySelectorAll(".metric-num");
+const nums = document.querySelectorAll(
+  ".metric-num[data-target]"
+);
 const finalText = (el) =>  (el.dataset.prefix || "") + el.dataset.target + (el.dataset.suffix || "");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -83,19 +85,88 @@ if ("IntersectionObserver" in window && !reduceMotion) {
   nums.forEach((n) => { n.textContent = finalText(n); });
 }
 // Typing effect on the headline
-(function(){
+// (function(){
+//   const el = document.getElementById("typed");
+//   if(!el) return;
+//   const phrases = ["from first principles to production.","with precision that ships.","by overruling the room with data.","from concept to production."];
+//   let pi=0, ci=0, deleting=false;
+//   const type=()=>{
+//     const word=phrases[pi];
+//     el.textContent = deleting ? word.slice(0,ci--) : word.slice(0,ci++);
+//     let delay = deleting ? 40 : 75;
+//     if(!deleting && ci===word.length+1){ delay=2200; deleting=true; ci=word.length; }
+//     else if(deleting && ci<0){ deleting=false; ci=0; pi=(pi+1)%phrases.length; delay=350; }
+//     setTimeout(type, delay);
+//   };
+//   // start after a short beat
+//   setTimeout(type, 500);
+// })();
+
+/* ========== ANIMATED HERO HEADLINE ========== */
+
+(function () {
+
   const el = document.getElementById("typed");
-  if(!el) return;
-  const phrases = ["from first principles to production.","with precision that ships.","by overruling the room with data.","from concept to production."];
-  let pi=0, ci=0, deleting=false;
-  const type=()=>{
-    const word=phrases[pi];
-    el.textContent = deleting ? word.slice(0,ci--) : word.slice(0,ci++);
+
+  if (!el) return;
+
+  const phrases = [
+    "from concept to production.",
+    "with precision that performs.",
+    "through analysis and validation.",
+    "for real-world manufacturing."
+  ];
+
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  // Accessible static text when motion is reduced
+  if (reduceMotion) {
+    el.textContent = phrases[0];
+    return;
+  }
+
+  let pi = 0;
+  let ci = 0;
+  let deleting = false;
+
+  const type = () => {
+
+    const word = phrases[pi];
+
+    el.textContent = deleting
+      ? word.slice(0, ci--)
+      : word.slice(0, ci++);
+
     let delay = deleting ? 40 : 75;
-    if(!deleting && ci===word.length+1){ delay=2200; deleting=true; ci=word.length; }
-    else if(deleting && ci<0){ deleting=false; ci=0; pi=(pi+1)%phrases.length; delay=350; }
+
+    // Pause after full phrase
+    if (!deleting && ci === word.length + 1) {
+
+      delay = 2200;
+      deleting = true;
+      ci = word.length;
+
+    }
+
+    // Move to the next phrase
+    else if (deleting && ci < 0) {
+
+      deleting = false;
+      ci = 0;
+
+      pi = (pi + 1) % phrases.length;
+
+      delay = 350;
+
+    }
+
     setTimeout(type, delay);
+
   };
-  // start after a short beat
+
+  // Initial typing delay
   setTimeout(type, 500);
+
 })();

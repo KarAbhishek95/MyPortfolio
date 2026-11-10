@@ -98,7 +98,7 @@ body::after{
 .button.light{background:rgba(255,255,255,.06)}
 
 /* ---------- Hero ---------- */
-.hero{padding:80px 0 90px;position:relative}
+/* .hero{padding:80px 0 90px;position:relative}
 .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center}
 .eyebrow{
   color:var(--accent-2);font-size:.78rem;font-weight:700;letter-spacing:.18em;
@@ -118,10 +118,10 @@ body::after{
 .quick-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
 .quick-facts div{padding:16px;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
 .quick-facts strong{display:block;font-family:"Space Grotesk",sans-serif;font-size:1.5rem;color:var(--accent-2)}
-.quick-facts span{font-size:.76rem;color:var(--dim)}
+.quick-facts span{font-size:.76rem;color:var(--dim)}*/
 
 /* hero visual side */
-.profile-card{
+/* .profile-card{
   position:relative;border-radius:var(--radius);overflow:hidden;
   border:1px solid var(--border-2);background:var(--surface);box-shadow:var(--shadow);
 }
@@ -139,7 +139,429 @@ body::after{
   background:linear-gradient(135deg,var(--accent),var(--accent-2));
 }
 .hero-badge b{display:block;color:#fff;font-size:.98rem}
-.hero-badge span{font-size:.8rem;color:var(--muted)}
+.hero-badge span{font-size:.8rem;color:var(--muted)}  */
+
+
+/* ========== HOME / HERO ========== */
+
+.hero {
+  padding: 80px 0 90px;
+  position: relative;
+}
+
+/* ---------- Full-Width Eyebrow ---------- */
+
+.hero .eyebrow {
+  color: var(--accent-2);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+/* ---------- Full-Width Animated Title ---------- */
+
+.hero .hero-title {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 36px;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.3rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+
+  background: linear-gradient(
+    120deg,
+    #ffffff 40%,
+    #9fc0ff
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ---------- Two Equal-Width Columns ---------- */
+
+.hero-grid {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1fr);
+
+  gap: 36px;
+  align-items: stretch;
+}
+
+/* ---------- Left Column ---------- */
+
+.hero-content {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* Professional Introduction */
+
+.hero-copy {
+  color: var(--muted);
+  font-size: 0.96rem;
+  line-height: 1.75;
+
+  max-width: 100%;
+  margin: 0;
+}
+
+.hero-copy strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* ========== ANIMATED HERO HIGHLIGHTS ========== */
+
+.hero-highlights {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 14px;
+  margin-top: 26px;
+}
+
+/* Highlight Cards */
+
+.hero-highlights .highlight-card {
+  min-width: 0;
+  position: relative;
+  overflow: hidden;
+
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 14px;
+
+  background: var(--surface);
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+
+  animation: highlightEntrance 0.65s ease both;
+}
+
+/* Sequential Card Entrance */
+
+.highlight-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.highlight-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.highlight-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.highlight-card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+/* Card Hover Animation */
+
+.hero-highlights .highlight-card:hover {
+  transform: translateY(-5px);
+  border-left-color: var(--accent-2);
+  border-color: var(--accent-2);
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.18),
+    0 0 20px rgba(34, 211, 166, 0.06);
+}
+
+/* Engineering Icon Containers */
+
+.hero-highlights .highlight-icon {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 14px;
+  border-radius: 12px;
+
+  color: var(--accent);
+  background: rgba(79, 140, 255, 0.09);
+  border: 1px solid var(--border-2);
+
+  animation: iconFloat 4s ease-in-out infinite;
+
+  transition:
+    color 0.3s ease,
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* Different Icon Animation Timings */
+
+.highlight-card:nth-child(2) .highlight-icon {
+  animation-delay: -1s;
+}
+
+.highlight-card:nth-child(3) .highlight-icon {
+  animation-delay: -2s;
+}
+
+.highlight-card:nth-child(4) .highlight-icon {
+  animation-delay: -3s;
+}
+
+/* SVG Icons */
+
+.hero-highlights .highlight-icon svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+/* Hover Icon Effect */
+
+.hero-highlights .highlight-card:hover .highlight-icon {
+  color: var(--accent-2);
+  background: rgba(34, 211, 166, 0.12);
+
+  transform: scale(1.08);
+  animation-play-state: paused;
+}
+
+/* Highlight Titles */
+
+.hero-highlights .highlight-card strong {
+  display: block;
+  margin-bottom: 8px;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.4;
+
+  color: #ffffff;
+}
+
+/* Highlight Descriptions */
+
+.hero-highlights .highlight-description {
+  display: block;
+  color: var(--dim);
+
+  font-size: 0.80rem;
+  line-height: 1.6;
+}
+
+/* Card Entrance Keyframes */
+
+@keyframes highlightEntrance {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* Floating Engineering Icon Keyframes */
+
+@keyframes iconFloat {
+  0%, 100% {
+    translate: 0 0;
+  }
+
+  50% {
+    translate: 0 -4px;
+  }
+}
+
+/* ========== HERO ACTION BUTTONS ========== */
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  gap: 14px;
+  margin-top: auto;
+  padding-top: 26px;
+}
+
+
+/* ---------- Hero Action Icons ---------- */
+
+.hero-actions .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* SVG Icon Styling */
+.hero-actions .button svg {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+
+  transition: transform 0.25s ease;
+}
+
+/* View Projects: diagonal movement */
+.hero-actions .button.primary:hover svg {
+  transform: translate(2px, -2px);
+}
+
+/* Download Resume: downward movement */
+.hero-actions .button.secondary:hover svg {
+  transform: translateY(3px);
+}
+
+/* Keep text aligned */
+.hero-actions .button span {
+  line-height: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-actions .button svg {
+    transition: none;
+  }
+}
+
+/* ========== RIGHT HERO VISUAL ========== */
+
+/* Original profile-card styling retained */
+
+.profile-card {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+
+  border: 1px solid var(--border-2);
+  background: var(--surface);
+
+  box-shadow: var(--shadow);
+}
+
+/* Exactly match left-column height */
+
+.hero-visual {
+  position: relative;
+
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+
+  overflow: hidden;
+}
+
+/*
+  The image fills the available visual space,
+  but object-fit: contain prevents distortion
+  or cropping of the original SVG artwork.
+*/
+
+.hero-visual > img {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  border-radius: var(--radius);
+  border: 1px solid var(--border-2);
+
+  display: block;
+}
+
+/* Original Profile Badge Styling */
+
+.hero-badge {
+  position: absolute;
+
+  left: 18px;
+  bottom: 18px;
+  right: 18px;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 14px 16px;
+
+  border-radius: 14px;
+  background: rgba(8, 13, 24, 0.82);
+  backdrop-filter: blur(8px);
+
+  border: 1px solid var(--border-2);
+  z-index: 2;
+}
+
+.hero-badge .mono {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+
+  border-radius: 12px;
+
+  display: grid;
+  place-items: center;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+
+  color: #04070f;
+
+  background: linear-gradient(
+    135deg,
+    var(--accent),
+    var(--accent-2)
+  );
+}
+
+.hero-badge b {
+  display: block;
+  color: #ffffff;
+  font-size: 0.98rem;
+}
+
+.hero-badge span {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* ========== ACCESSIBILITY ========== */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-highlights .highlight-card,
+  .hero-highlights .highlight-icon {
+    animation: none;
+  }
+
+  .hero-highlights .highlight-card,
+  .hero-actions .button {
+    transition: none;
+  }
+}
 
 /* ---------- Sections ---------- */
 .section{padding:88px 0}
@@ -156,15 +578,123 @@ body::after{
 .reveal.in{opacity:1;transform:none}
 
 /* ---------- Metrics ---------- */
-.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.metric{
-  padding:26px 22px;border:1px solid var(--border);border-radius:16px;background:var(--surface);
-  transition:transform .2s,border-color .2s;
+/*.metrics-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items: stretch}
+ .metric {
+  padding: 26px 22px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+  transition: transform .2s, border-color .2s;
 }
-.metric:hover{transform:translateY(-4px);border-color:var(--accent)}
-.metric-num{display:block;margin-bottom:8px;font-family:"Space Grotesk",sans-serif;font-size:2.6rem;font-weight:700;
-  background:linear-gradient(120deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.metric p{font-size:.84rem;color:var(--muted);margin:0}
+.metrics-grid .metric {
+  min-width: 0;
+  height: 100%;
+  box-sizing: border-box;
+}
+#metrics .section-intro {
+  max-width: 100%;
+  width: 100%;
+  white-space: nowrap;
+}
+.metric:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent)
+}
+
+.metric-num {
+  display: block;
+  margin-bottom: 8px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 2.6rem;
+  font-weight: 700;
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent
+}
+
+.metric p {
+  font-size: .84rem;
+  color: var(--muted);
+  margin: 0
+} */
+
+
+/* ---------- Metrics ---------- */
+
+/* Metrics Grid */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  align-items: stretch;
+  margin-top: 28px;
+}
+
+/* Individual Metric Cards */
+.metric {
+  min-width: 0;
+  min-height: 190px;
+  height: 100%;
+  padding: 26px 28px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 14px;
+
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+
+  transition: transform 0.2s ease,
+              border-color 0.2s ease;
+}
+
+/* Metric Hover Effect */
+.metric:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+/* Metric Numbers */
+.metric-num {
+  display: block;
+  margin: 0;
+
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1.2;
+
+  background: linear-gradient(
+    120deg,
+    var(--accent),
+    var(--accent-2)
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Metric Descriptions */
+.metric p {
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Results Section Subtitle */
+#metrics .section-intro {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 0;
+  white-space: normal;
+  text-wrap: balance;
+}
 
 /* ---------- Timeline ---------- */
 .timeline{display:grid;gap:22px}
@@ -263,24 +793,186 @@ footer{padding:34px 0;border-top:1px solid var(--border);background:var(--dark)}
 .footer-content{display:flex;justify-content:space-between;color:var(--dim);font-size:.88rem;flex-wrap:wrap;gap:8px}
 
 /* ---------- Responsive ---------- */
-@media (max-width:960px){
-  .nav-links{position:fixed;inset:70px 0 auto 0;flex-direction:column;background:var(--bg-2);
-    border-bottom:1px solid var(--border);padding:20px 28px;gap:16px;display:none}
-  .nav-links.open{display:flex}
-  .menu-toggle{display:block}
-  .hero-grid,.split-section,.detail-grid,.cards-grid,.education-grid,.case-columns,.project-grid,
-  .metrics-grid,.project-figure.two-up,.resume-block,.hero-highlights{grid-template-columns:1fr}
-  .metrics-grid{grid-template-columns:1fr 1fr}
-  .hero h1{font-size:2.5rem}
-  .case-study{grid-template-columns:1fr}
-  .project-head{flex-direction:column;gap:14px}
-}
-@media (max-width:560px){
-  .metrics-grid,.quick-facts{grid-template-columns:1fr}
-  .hero h1{font-size:2.1rem}
-  .project-card{padding:26px}
-}
+@media (max-width:960px) {
+  .nav-links {
+    position: fixed;
+    inset: 70px 0 auto 0;
+    flex-direction: column;
+    background: var(--bg-2);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 28px;
+    gap: 16px;
+    display: none
+  }
 
+  .nav-links.open {
+    display: flex
+  }
+
+  .menu-toggle {
+    display: block
+  }
+
+
+  .split-section,
+  .detail-grid,
+  .cards-grid,
+  .education-grid,
+  .case-columns,
+  .project-grid,
+  .metrics-grid,
+  .project-figure.two-up,
+  .resume-block {
+    grid-template-columns: 1fr
+  }
+   #home .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  #home .hero-title {
+    font-size: 2.5rem;
+    margin-bottom: 28px;
+    min-height: 0;
+  }
+
+  #home .hero-content {
+    width: 100%;
+  }
+
+  #home .hero-highlights {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #home .hero-actions {
+    margin-top: 0;
+    padding-top: 24px;
+  }
+
+  /*
+    Columns become stacked on tablets.
+    The visual receives its own responsive height.
+  */
+
+  #home .hero-visual {
+    height: auto;
+    min-height: 440px;
+  }
+
+  .metrics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .metric {
+    min-height: 175px;
+    padding: 24px;
+  }
+
+  #metrics .section-intro {
+    white-space: normal;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem
+  }
+
+  .case-study {
+    grid-template-columns: 1fr
+  }
+
+  .project-head {
+    flex-direction: column;
+    gap: 14px
+  }
+}
+@media (max-width:560px) {
+
+  .quick-facts {
+    grid-template-columns: 1fr
+  }
+    #home .hero-title {
+    font-size: 2.1rem;
+    margin-bottom: 24px;
+    min-height: 0;
+  }
+
+  #home .hero-grid {
+    gap: 26px;
+  }
+
+  #home .hero-copy {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  #home .hero-highlights {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 22px;
+  }
+
+  #home .hero-highlights .highlight-card {
+    padding: 16px;
+  }
+
+  #home .hero-highlights .highlight-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+  }
+
+  #home .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  #home .hero-actions .button {
+    width: 100%;
+    text-align: center;
+  }
+
+  #home .hero-visual {
+    min-height: 360px;
+  }
+
+  #home .hero-badge {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    padding: 12px;
+  }
+
+  .hero h1 {
+    font-size: 2.1rem
+  }
+
+  .project-card {
+    padding: 26px
+  }
+  .metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .metric {
+    min-height: 150px;
+    padding: 22px;
+  }
+
+  .metric-num {
+    font-size: 2.3rem;
+  }
+
+  .metric p {
+    font-size: 0.84rem;
+  }
+
+  #metrics .section-intro {
+    white-space: normal;
+  }
+}
 /* ---------- Typed headline ---------- */
 .type-wrap{display:inline;white-space:normal}
 .typed{
@@ -293,8 +985,8 @@ footer{padding:34px 0;border-top:1px solid var(--border);background:var(--dark)}
 }
 @keyframes blink{50%{opacity:0}}
 /* reserve two lines so nothing jumps while typing */
-.hero-title{min-height:3.4em}
-@media (max-width:960px){.hero-title{min-height:auto}}
+.hero-title{min-height:2.4em}
+@media (max-width:960px){.hero-title{min-height:0;}}
 
 /* ---------- About diamond skills ---------- */
 .skill-diamonds{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
